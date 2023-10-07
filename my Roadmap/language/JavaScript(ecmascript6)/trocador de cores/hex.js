@@ -9,7 +9,7 @@ btn.addEventListener('click', function(){
  } 
 
 color.textContent = hexColor;
- document.body.style.backgorundColor = hexColor; 
+ document.body.style.backgorundColor = "hexColor"; 
 });
 
 function getRandomNumber(){
