@@ -39,6 +39,7 @@ p{
     text-align: center;
    text-shadow: 3px 4px 3px rgb(224, 39, 39);
    z-index: 1;
+   font-weight: 600;
    
 }
 .conteudo {
@@ -61,12 +62,24 @@ p{
   transform: rotateX(20deg); /* Inclinação para o efeito 3D */
   transition: transform 0.5s, box-shadow 0.5s;
   position: absolute;
+  cursor: grab;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 1.0);
 }
 
 .retrato:hover {
   transform: rotateX(0deg); /* Retorna à posição original no hover */
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.4); /* Adiciona sombra no hover */
 }
+#video-background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}    
 
 
 

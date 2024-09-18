@@ -4,14 +4,16 @@ document.addEventListener("DOMContentLoaded", function () {
     retratos.forEach(retrato => {
         retrato.addEventListener("mousedown", handleMouseDown);
         retrato.addEventListener("touchstart", handleTouchStart);
+        placeImageRandomly(retrato);
+        startFloating(retrato);
     });
 
     function handleMouseDown(event) {
         event.preventDefault();
         const retrato = event.target;
 
-        const initialX = event.clientX - retrato.getBoundingClientRect().left;
-        const initialY = event.clientY - retrato.getBoundingClientRect().top;
+        let initialX = event.clientX - retrato.offsetLeft;
+        let initialY = event.clientY - retrato.offsetTop;
 
         function handleMouseMove(moveEvent) {
             const newX = moveEvent.clientX - initialX;
@@ -33,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
         event.preventDefault();
         const retrato = event.target;
 
-        const initialX = event.touches[0].clientX - retrato.getBoundingClientRect().left;
-        const initialY = event.touches[0].clientY - retrato.getBoundingClientRect().top;
+        let initialX = event.touches[0].clientX - retrato.offsetLeft;
+        let initialY = event.touches[0].clientY - retrato.offsetTop;
 
         function handleTouchMove(moveEvent) {
             const newX = moveEvent.touches[0].clientX - initialX;
@@ -55,11 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function moveImage(image, newX, newY) {
         const maxX = window.innerWidth - image.clientWidth;
         const maxY = window.innerHeight - image.clientHeight;
-
-        // Reduzindo a sensibilidade pela metade
-        const sensitivity = 0.5;
-        newX *= sensitivity;
-        newY *= sensitivity;
 
         image.style.left = Math.min(Math.max(0, newX), maxX) + "px";
         image.style.top = Math.min(Math.max(0, newY), maxY) + "px";
@@ -114,7 +111,62 @@ document.addEventListener("DOMContentLoaded", function () {
         setPosition();
     }
 
-    retratos.forEach(retrato => {
-        placeImageRandomly(retrato);
-    });
+    function startFloating(image) {
+        const maxX = window.innerWidth - image.clientWidth;
+        const maxY = window.innerHeight - image.clientHeight;
+
+        function getRandomDirection() {
+            return (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 0.5);
+        }
+
+        let deltaX = getRandomDirection();
+        let deltaY = getRandomDirection();
+
+        function float() {
+            let currentX = parseFloat(image.style.left) || 0;
+            let currentY = parseFloat(image.style.top) || 0;
+
+            if (currentX + deltaX < 0 || currentX + deltaX > maxX) {
+                deltaX *= -1;
+            }
+
+            if (currentY + deltaY < 0 || currentY + deltaY > maxY) {
+                deltaY *= -1;
+            }
+
+            image.style.left = Math.min(Math.max(0, currentX + deltaX), maxX) + "px";
+            image.style.top = Math.min(Math.max(0, currentY + deltaY), maxY) + "px";
+
+            requestAnimationFrame(float);
+        }
+
+        requestAnimationFrame(float);
+    }
+    const audio = document.getElementById("background-audio");
+
+            audio.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+
+            audio.addEventListener('canplaythrough', function() {
+                audio.muted = false;
+                audio.play();
+            }, false);
+
+            function checkAudio() {
+                if (audio.paused) {
+                    audio.muted = true;
+                    audio.play().then(() => {
+                        audio.muted = false;
+                    }).catch(error => {
+                        console.error('Playback failed:', error);
+                    });
+                }
+            }
+
+            // Verificação contínua para garantir que o áudio esteja tocando
+            setInterval(checkAudio, 1000);
+            
+
 });

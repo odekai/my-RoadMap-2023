@@ -19,8 +19,23 @@ box-shadow: 10px 10px #204607;
 h2{
     color:rgb(23, 80, 31)
 }
-h2.avance{
-    text-decoration:underline #60a704;
 
+p{
+    font-size:medium;
+    font-family: Verdana,arial, Tahoma;
+}
+.basico{
+     color: rgb(20, 150, 20);
+     font-weight: bold;
+}
+.mid{
+    color:rgb(172, 172, 49) ;
 
+}
+.avance{
+    color: rgb(169, 32, 32);
+
+}
+.destaque{
+    background-color: rgba(214, 204, 69, 0.67);
 }
