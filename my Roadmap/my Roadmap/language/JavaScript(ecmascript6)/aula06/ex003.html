@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meu primeiro programa</title>
+    <style>
+        body{background-color:burlywood;
+            color:black;
+            font: normal 20pt arial;}
+    </style>
+
+</head>
+<body>
+    <h1>olá, Mundo!</h1>
+    <p>já me livrei da maldição</p>
+    <script>
+        var n1 =Number.parseInt(window.prompt('digite um número'))
+        var n2 = Number.parseFloat(window.prompt("digite outro número"))
+        var soma = n1 +n2
+        window.alert('a soma dos valores é'+String(soma))//string+variavel para transformar essa variavel numa string.
+        // a soma não acontece poís o javascript trata o número retornado pelo "window.prompt" como uma string.
+        //(number+number)soma
+        //(string=string)concatenação
+        //OBS.: pode-se usar apenas (number) e o javascript vai identificar se o número é inteiro ou real  
+    </script>
+</body>
+</html>
