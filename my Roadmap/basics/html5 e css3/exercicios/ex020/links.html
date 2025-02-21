@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links</title>
+    <style>
+        /* SELETORES PERSONALIZADOS
+
+        #  = id
+        .  = class
+        :: = pseudo-class
+        >  = children
+        
+        */ 
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(38, 126, 161);
+            
+        }
+        a{
+            color:black;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:visited{
+            color: blueviolet;
+        }
+        a:hover{
+            color:black;
+            text-decoration: underline;
+        }
+        a::after{
+            content: '[link]';
+            text-decoration: none;
+            font-weight: normal;
+            color: rgb(4, 0, 250);
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Personalizando Links</h1>
+    <li> <a href="https://github.com/">Repositório Github</a>
+    </li>
+    <li><a href="qaasa">Canal do Youtube</a></li>
+    <li><a href="asasa">Site do CursoemVideo</a></li>
+    
+</body>
+</html>
